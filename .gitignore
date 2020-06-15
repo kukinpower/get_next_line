@@ -54,3 +54,6 @@ dkms.conf
 
 main.c
 text.txt
+libft/
+CMakeLists.txt
+cmake-build-debug/
