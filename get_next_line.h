@@ -6,7 +6,7 @@
 /*   By: mkristie <kukinpower@ya.ru>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 06:44:16 by mkristie          #+#    #+#             */
-/*   Updated: 2020/06/13 06:55:31 by mkristie         ###   ########.fr       */
+/*   Updated: 2020/06/19 19:27:00 by mkristie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,13 @@
 
 # include <stdio.h>
 
-typedef struct				s_gnl_struct
-{
-	int 					fd;
-	char 					*line;
-	struct s_gnl_struct		*next;
-}							t_gnl_struct;
-
 
 int							get_next_line(int fd, char **line);
-size_t 						ft_strlen(const char *s);
+size_t 						ft_strlen_upg(const char *s, char c);
 char						*ft_strdup(const char *s1);
 char						*ft_strchr(const char *s, int c);
-char						*ft_strjoin(char const *s1, char const *s2);
+char						*ft_strjoin_upg(char const *s1, char const *s2);
+
 
 
 #endif
