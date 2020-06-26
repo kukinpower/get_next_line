@@ -12,12 +12,12 @@
 
 #include "get_next_line.h"
 
-size_t		ft_strlen_upg(const char *s, char c)
+size_t		ft_strlen(const char *s)
 {
 	size_t	i;
 
 	i = 0;
-	while (s[i] != c)
+	while (s[i] != '\0')
 	{
 		i++;
 	}
@@ -30,7 +30,7 @@ char		*ft_strdup(const char *s1)
 	size_t	len;
 	size_t	i;
 
-	len = ft_strlen_upg(s1, '\0');
+	len = ft_strlen(s1);
 	i = 0;
 	if (!(str1 = malloc(len + 1)))
 		return (NULL);
@@ -43,6 +43,30 @@ char		*ft_strdup(const char *s1)
 	return (str1);
 }
 
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	if (ft_strlen(s) < start)
+		return (ft_strdup(""));
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	if (!(str = malloc(len + 1)))
+		return (NULL);
+	while (len--)
+	{
+		str[i] = s[start];
+		i++;
+		start++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
 char		*ft_strchr(const char *s, int c)
 {
 	char	ch;
@@ -53,7 +77,7 @@ char		*ft_strchr(const char *s, int c)
 	i = 0;
 	str = (char *)s;
 	if (c == '\0')
-		return (str + ft_strlen_upg(s, '\0'));
+		return (str + ft_strlen(s));
 	while (str[i])
 	{
 		if (str[i] == ch)
@@ -73,9 +97,9 @@ char		*ft_strjoin_upg(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1 && s2)
-		len = ft_strlen_upg(s2, '\0') + 1;
+		len = ft_strlen(s2) + 1;
 	else if (s1 && s2)
-		len = ft_strlen_upg(s1, '\0') + ft_strlen_upg(s2, '\0') + 1;
+		len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	if (!(str = malloc(sizeof(*str) * (len))))
 		return (NULL);
 	save = str;
