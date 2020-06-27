@@ -43,7 +43,7 @@ char		*ft_strdup(const char *s1)
 	return (str1);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char		*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
 	int		i;
@@ -87,13 +87,15 @@ char		*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char		*ft_strjoin_upg(char const *s1, char const *s2)
+char		*ft_strjoin_upg(char *s1, char *s2)
 {
 	char	*str;
 	size_t	len;
 	char	*save;
+	char	*s1_holder;
 
 	len = 0;
+	s1_holder = s1;
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1 && s2)
@@ -110,5 +112,6 @@ char		*ft_strjoin_upg(char const *s1, char const *s2)
 		while (*s2)
 			*str++ = *s2++;
 	*str = 0;
+	free(s1_holder);
 	return (save);
 }

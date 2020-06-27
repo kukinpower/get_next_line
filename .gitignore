@@ -57,3 +57,10 @@ text.txt
 libft/
 CMakeLists.txt
 cmake-build-debug/
+re.c
+.vscode/
+42TESTERS-GNL/
+gnl-war-machine-v2019/
+GNLtests/
+alphabet
+
