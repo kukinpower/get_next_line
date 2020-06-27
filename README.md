@@ -52,10 +52,10 @@ Project coded according to the 42 norms. No C standard library functions were us
 
 ## TESTS
 
-<img src="./42TESTERS-GNL.png" width="564" height="492"></img>
+<img src="./images/42TESTERS-GNL.png" width="564" height="492"></img>
 
 [42TESTERS-GNL](https://github.com/Mazoise/42TESTERS-GNL)
 
-<img src="./gnl-war-machine-v2019.png" width="664" height="622"></img>
+<img src="./images/gnl-war-machine-v2019.png" width="664" height="622"></img>
 
 [gnl-war-machine-v2019](https://github.com/Alexandre94H/gnl-war-machine-v2019)
