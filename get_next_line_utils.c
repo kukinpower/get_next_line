@@ -30,13 +30,6 @@ char		*ft_strdup(const char *s1)
 	size_t	len;
 	size_t	i;
 
-	if (!s1)
-	{
-		if (!(str = malloc(1)))
-			return (NULL);
-		str[0] = '\0';
-		return (str);
-	}
 	len = ft_strlen(s1);
 	i = 0;
 	if (!(str = malloc(len + 1)))
@@ -70,21 +63,17 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-char		*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	char	ch;
 	int		i;
-	char	*str;
 
-	ch = (char)c;
 	i = 0;
-	str = (char *)s;
-	if (c == '\0')
-		return (str + ft_strlen(s));
-	while (str[i])
+	if ((char)c == '\0')
+		return ((void *)s + ft_strlen(s));
+	while (s[i])
 	{
-		if (str[i] == ch)
-			return (str + i);
+		if (s[i] == (char)c)
+			return ((void *)s + i);
 		i++;
 	}
 	return (NULL);
