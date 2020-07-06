@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkristie <kukinpower@ya.ru>                +#+  +:+       +#+        */
+/*   By: romankukin <romankukin@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 06:44:21 by mkristie          #+#    #+#             */
-/*   Updated: 2020/06/13 06:44:22 by mkristie         ###   ########.fr       */
+/*   Updated: 2020/07/05 19:02:24 by romankukin       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-char	*ft_strchr(const char *s, int c)
+char		*ft_strchr(const char *s, int c)
 {
 	int		i;
 

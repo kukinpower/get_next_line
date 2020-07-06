@@ -83,31 +83,40 @@ static _Bool	check_input(int fd, char **line, _Bool *flag, char **remainder)
 		return (0);
 	*flag = 1;
 	if (*remainder && !(append(remainder, line, flag)))
+	{
+		free(*remainder);
+		free(*line);
 		return (0);
+	}
 	return (1);
 }
 
-static _Bool	append_remainder(char **remainder, char **newline_pointer)
+static _Bool	append_remainder(int i, char **remainder, \
+								char **newline_ptr, char **line)
 {
 	char		*temp;
 
-	(*newline_pointer)++;
+	if (i == -1)
+	{
+		if (*remainder)
+			free(*remainder);
+		free(*line);
+		return (-1);
+	}
+	(*newline_ptr)++;
+	temp = NULL;
 	if (*remainder)
 	{
 		temp = *remainder;
-		if (!(*remainder = ft_strjoin_upg(*remainder, *newline_pointer)))
-		{
-			free(temp);
-			return (0);
-		}
-		free(temp);
-		temp = NULL;
+		*remainder = ft_strjoin_upg(*remainder, *newline_ptr);
 	}
 	else
-	{
-		if (!(*remainder = ft_strdup(*newline_pointer)))
-			return (0);
-	}
+		*remainder = ft_strdup(*newline_ptr);
+	if (temp)
+		free(temp);
+	temp = NULL;
+	if (!(*remainder))
+		return (0);
 	return (1);
 }
 
@@ -115,7 +124,7 @@ int				get_next_line(int fd, char **line)
 {
 	static char	*remainder;
 	char		buf[BUFFER_SIZE + 1];
-	char		*newline_pointer;
+	char		*newline_ptr;
 	_Bool		flag;
 	int			bytes_read;
 
@@ -125,13 +134,13 @@ int				get_next_line(int fd, char **line)
 	while (flag && (bytes_read = read(fd, buf, BUFFER_SIZE)))
 	{
 		if (bytes_read < 0)
-			return (-1);
+			return ((append_remainder(-1, &remainder, &newline_ptr, line)));
 		buf[bytes_read] = 0;
-		if ((newline_pointer = ft_strchr(buf, '\n')))
+		if ((newline_ptr = ft_strchr(buf, '\n')))
 		{
-			*newline_pointer = '\0';
+			*newline_ptr = '\0';
 			flag = 0;
-			if (!(append_remainder(&remainder, &newline_pointer)))
+			if (!(append_remainder(1, &remainder, &newline_ptr, line)))
 				return (-1);
 		}
 		if (!(*line = ft_strjoin_upg(*line, buf)))
