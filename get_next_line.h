@@ -16,10 +16,10 @@
 # include <unistd.h>
 
 int			get_next_line(int fd, char **line);
-size_t		ft_strlen(const char *s);
-char		*ft_strdup(const char *s1);
-char		*ft_strchr(const char *s, int c);
-char		*ft_strjoin_upg(char *s1, char *s2);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
+size_t		ft_strlen_gnl(const char *s);
+char		*ft_strdup_gnl(const char *s1);
+char		*ft_strchr_gnl(const char *s, int c);
+char		*ft_strjoin_gnl(char *s1, char *s2);
+char		*ft_substr_gnl(char const *s, unsigned int start, size_t len);
 
 #endif

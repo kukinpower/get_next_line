@@ -23,13 +23,13 @@ static _Bool	append_utils(char **append_this, char **remainder, \
 {
 	char		*temp;
 
-	if (!(*append_this = ft_substr(*remainder, 0, \
-		ft_strlen(*remainder) - ft_strlen(*newline_ptr_temp))))
+	if (!(*append_this = ft_substr_gnl(*remainder, 0, \
+		ft_strlen_gnl(*remainder) - ft_strlen_gnl(*newline_ptr_temp))))
 	{
 		free(*remainder);
 		return (0);
 	}
-	if (!(temp = ft_strdup((*newline_ptr_temp) + 1)))
+	if (!(temp = ft_strdup_gnl((*newline_ptr_temp) + 1)))
 	{
 		free(*remainder);
 		return (0);
@@ -37,7 +37,7 @@ static _Bool	append_utils(char **append_this, char **remainder, \
 	free(*remainder);
 	*remainder = temp;
 	temp = NULL;
-	if (!(*line = ft_strjoin_upg(*line, *append_this)))
+	if (!(*line = ft_strjoin_gnl(*line, *append_this)))
 	{
 		free(*append_this);
 		return (0);
@@ -54,7 +54,7 @@ static _Bool	append(char **remainder, char **line, _Bool *flag)
 
 	if (*remainder)
 	{
-		if ((newline_ptr_temp = ft_strchr(*remainder, '\n')))
+		if ((newline_ptr_temp = ft_strchr_gnl(*remainder, '\n')))
 		{
 			if (!(append_utils(&append_this, remainder, \
 								line, &newline_ptr_temp)))
@@ -63,7 +63,7 @@ static _Bool	append(char **remainder, char **line, _Bool *flag)
 		}
 		else
 		{
-			if (!(*line = ft_strjoin_upg(*line, *remainder)))
+			if (!(*line = ft_strjoin_gnl(*line, *remainder)))
 			{
 				free(*remainder);
 				return (0);
@@ -79,7 +79,7 @@ static _Bool	check_input(int fd, char **line, _Bool *flag, char **remainder)
 {
 	if (BUFFER_SIZE < 1 || fd < 0)
 		return (0);
-	if (!(*line = ft_strdup("")))
+	if (!(*line = ft_strdup_gnl("")))
 		return (0);
 	*flag = 1;
 	if (*remainder && !(append(remainder, line, flag)))
@@ -108,10 +108,10 @@ static _Bool	append_remainder(int i, char **remainder, \
 	if (*remainder)
 	{
 		temp = *remainder;
-		*remainder = ft_strjoin_upg(*remainder, *newline_ptr);
+		*remainder = ft_strjoin_gnl(*remainder, *newline_ptr);
 	}
 	else
-		*remainder = ft_strdup(*newline_ptr);
+		*remainder = ft_strdup_gnl(*newline_ptr);
 	if (temp)
 		free(temp);
 	temp = NULL;
@@ -136,14 +136,14 @@ int				get_next_line(int fd, char **line)
 		if (bytes_read < 0)
 			return ((append_remainder(-1, &remainder, &newline_ptr, line)));
 		buf[bytes_read] = 0;
-		if ((newline_ptr = ft_strchr(buf, '\n')))
+		if ((newline_ptr = ft_strchr_gnl(buf, '\n')))
 		{
 			*newline_ptr = '\0';
 			flag = 0;
 			if (!(append_remainder(1, &remainder, &newline_ptr, line)))
 				return (-1);
 		}
-		if (!(*line = ft_strjoin_upg(*line, buf)))
+		if (!(*line = ft_strjoin_gnl(*line, buf)))
 			return (-1);
 	}
 	return ((!flag) ? 1 : 0);
