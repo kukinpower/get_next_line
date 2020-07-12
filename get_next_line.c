@@ -126,7 +126,7 @@ int				get_next_line(int fd, char **line)
 	char		buf[BUFFER_SIZE + 1];
 	char		*newline_ptr;
 	_Bool		flag;
-	int			bytes_read;
+	ssize_t		bytes_read;
 
 	if (!line || (read(fd, buf, 0) < 0) || \
 		!(check_input(fd, line, &flag, &remainder)))
