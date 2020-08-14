@@ -15,6 +15,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 21
+# endif
+
 int			get_next_line(int fd, char **line);
 size_t		ft_strlen_gnl(const char *s);
 char		*ft_strdup_gnl(const char *s1);
